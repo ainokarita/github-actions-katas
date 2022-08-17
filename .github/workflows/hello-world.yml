@@ -1,13 +1,13 @@
-  name: JAVA CI
-  on: push
-  jobs:
+name: JAVA CI
+on: push
+jobs:
   Clone-down:
     name: Clone down repo
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     steps:
-      uses: actions/checkout@v2
-      name: Upload Repo
+    - uses: actions/checkout@v2
+    - name: Upload Repo
       uses: actions/upload-artifact@v2
       with:
         name: code
@@ -16,7 +16,7 @@
       runs-on: ubuntu-latest
       needs: Clone-down
       container: gradle:6-jdk11
-    steps:
+      steps:
       - name: Download code
         uses: actions/download-artifact@v2
         with: 
@@ -31,7 +31,7 @@
         with: 
           name: code
           path: .
-          
+
 #A line-by-line explanation of the above:
 
 #Line 1: The name attribute provides useful organizational information when returning warnings, errors, and output. The name should be meaningful to you as an action within your build process.
